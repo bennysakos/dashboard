@@ -43,6 +43,6 @@ app.use("/", require("./auth"));                // auth.js in root
 app.use("/dashboard", require("./dashboard")); // dashboard.js in root
 
 // If api/settings.js is inside an api folder, keep the path as is
-app.use("/api/settings", require("./api/settings"));
+app.use("/api/settings", require("./settings"));
 
 app.listen(PORT, () => console.log(`Dashboard running on http://localhost:${PORT}`));
