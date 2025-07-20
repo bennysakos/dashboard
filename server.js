@@ -3,7 +3,6 @@ const session = require("express-session");
 const passport = require("passport");
 const DiscordStrategy = require("passport-discord").Strategy;
 const path = require("path");
-const fs = require("fs");
 require("dotenv").config();
 
 const app = express();
@@ -39,8 +38,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/ping", (req, res) => res.send("I am alive!"));
 
-app.use("/", require("./routes/auth"));
-app.use("/dashboard", require("./routes/dashboard"));
-app.use("/api/settings", require("./routes/api/settings"));
+// Adjusted require paths — assuming these files are in the project root
+app.use("/", require("./auth"));                // auth.js in root
+app.use("/dashboard", require("./dashboard")); // dashboard.js in root
+
+// If api/settings.js is inside an api folder, keep the path as is
+app.use("/api/settings", require("./api/settings"));
 
 app.listen(PORT, () => console.log(`Dashboard running on http://localhost:${PORT}`));
