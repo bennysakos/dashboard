@@ -2,8 +2,10 @@ const express = require("express");
 const router = express.Router();
 const fs = require("fs");
 
-const settingsPath = "./models/guildSettings.json";
-let settings = JSON.parse(fs.readFileSync(settingsPath, 'utf8'));
+const path = require('path');
+const guildSettingsPath = path.join(__dirname, 'guildSettings.json');
+const guildSettings = JSON.parse(fs.readFileSync(guildSettingsPath, 'utf-8'));
+
 
 router.post("/welcome", (req, res) => {
   const guildId = req.user.guilds[0].id;
